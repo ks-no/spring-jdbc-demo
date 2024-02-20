@@ -1,4 +1,4 @@
-CREATE TABLE schema_demo.resource
+CREATE TABLE schemademo.resource
 (
     id UNIQUEIDENTIFIER PRIMARY KEY,
     name    NVARCHAR(400)

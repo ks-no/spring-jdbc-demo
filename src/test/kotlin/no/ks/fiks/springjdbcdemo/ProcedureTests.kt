@@ -34,8 +34,8 @@ class ProcedureTests : StringSpec() {
 				.dataSource(mssqlServerContainer.jdbcUrl, mssqlServerContainer.username, mssqlServerContainer.password)
 				.encoding(StandardCharsets.UTF_8)
 				.target(MigrationVersion.LATEST)
-				.defaultSchema("schema_demo")
-				.schemas("schema_demo")
+				.defaultSchema("schemademo")
+				.schemas("schemademo")
 				.locations(Location("classpath:migrations"))
 				.validateOnMigrate(true)
 				.load()
@@ -56,12 +56,12 @@ class ProcedureTests : StringSpec() {
 
 			NamedParameterJdbcTemplate(dataSource)
 				.update(
-					"INSERT schema_demo.resource (id, name) VALUES (:id, :name);",
+					"INSERT schemademo.resource (id, name) VALUES (:id, :name);",
 					mapOf("id" to newResource, "name" to name)
 				)
 
 			SimpleJdbcCall(dataSource)
-				.withSchemaName("schema_demo")
+				.withSchemaName("schemademo")
 				.withProcedureName("updateresource")
 				.declareParameters(
 					SqlParameter("id", Types.VARCHAR),
